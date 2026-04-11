@@ -1,0 +1,11 @@
+{
+  "name": "personal-web",
+  "version": "1.0.0",
+  "description": "Personal website static files synchronized from Cloudflare",
+  "scripts": {
+    "start": "http-server ."
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

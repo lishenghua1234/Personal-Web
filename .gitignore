@@ -1,0 +1,6 @@
+cloudflare_deploy_page.zip
+node_modules/
+.DS_Store
+dist/
+build/
+.env

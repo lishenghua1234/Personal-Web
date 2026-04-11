@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-dark: #090510; 
+  --horizon-glow: rgba(192, 132, 252, 0.5); 
+  --horizon-border: #e9d5ff; 
+  --text-main: #faf5ff; 
+  --text-sub: #d8b4fe;
+}
+
+body {
+  background-color: var(--bg-dark);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========================================= */
+/* 核心视觉：底部的深空浅紫泛星辉地平线弧圈    */
+/* ========================================= */
+.horizon {
+  position: absolute;
+  bottom: -65vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200vw;
+  height: 100vh;
+  border-radius: 50%;
+  background: radial-gradient(circle at top, #160b29 0%, #000 85%);
+  border-top: 3px solid var(--horizon-border);
+  box-shadow: 0px -25px 120px 25px var(--horizon-glow), 
+              inset 0px 40px 120px -20px var(--horizon-glow);
+  z-index: 1;
+}
+
+/* 坐在地平线上面的猫咪容器 */
+.cat-wrapper {
+  position: absolute;
+  top: -46px; 
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--horizon-border); 
+  filter: drop-shadow(0 0 8px rgba(192, 132, 252, 0.7)); 
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  z-index: 20;
+}
+
+.cat-wrapper:hover {
+  transform: translateX(-50%) translateY(-10px) scale(1.05);
+  filter: drop-shadow(0 0 25px rgba(233, 213, 255, 1));
+}
+
+/* ========================================= */
+/* 文字区域排版                              */
+/* ========================================= */
+.hero-container {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  margin-top: -15vh; 
+  padding: 0 20px;
+}
+
+.headline {
+  /* 使用巨大排版彰显魄力 */
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+  color: var(--text-main);
+  text-shadow: 0 0 50px rgba(192, 132, 252, 0.7);
+  margin-bottom: 2rem;
+  user-select: none;
+}
+
+.email-link {
+  font-size: clamp(0.75rem, 1.5vw, 1.25rem); /* 调整让邮箱更为突出 */
+  font-weight: 700;
+  color: #c084fc;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none; 
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  opacity: 0.9;
+}
+
+.email-link:hover {
+  color: #fff;
+  text-shadow: 0 0 20px rgba(192, 132, 252, 1);
+  transform: translateY(-2px);
+  opacity: 1;
+}
+
+/* ========================================= */
+/* 字母瓦解特效与漂浮方块组件                 */
+/* ========================================= */
+.hover-word {
+  position: relative;
+  display: inline-block;
+  cursor: crosshair;
+  transition: all 0.4s ease;
+  z-index: 50; 
+}
+
+.hover-word.dissolve {
+  /* 当触发时，文本本身发生科幻消融半透感，犹如被解构 */
+  color: rgba(216, 180, 254, 0.08); 
+  text-shadow: 0 0 40px rgba(192, 132, 252, 1), 0 0 80px rgba(233, 213, 255, 0.8);
+  letter-spacing: 0.02em; /* 字距微扩 */
+}
+
+.pixel-particle {
+  position: absolute;
+  border-radius: 0px; /* 极具科技解体感的方块 */
+  pointer-events: none;
+  z-index: 100;
+  /* initial color defined in JS */
+}
+
+/* 基础背景星点的漂浮 */
+.particles {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 300px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  background-color: var(--horizon-border);
+  box-shadow: 0 0 20px 3px var(--horizon-glow);
+  border-radius: 1px;
+  opacity: 0;
+  animation: floatUp 3.5s infinite ease-in;
+}
+
+.p-1 { width: 5px; height: 5px; left: 45%; animation-delay: 0s; }
+.p-2 { width: 3px; height: 3px; left: 53%; animation-delay: 1.2s; }
+.p-3 { width: 8px; height: 8px; left: 48%; animation-delay: 0.5s; background-color: #f3e8ff;}
+.p-4 { width: 4px; height: 4px; left: 56%; animation-delay: 2.1s; }
+
+@keyframes floatUp {
+  0% { transform: translateY(40px) scale(0.8); opacity: 0; }
+  20% { opacity: 0.95; transform: translateY(0px) scale(1.1); }
+  80% { opacity: 0.5; }
+  100% { transform: translateY(-120px) scale(0.3) rotate(45deg); opacity: 0; }
+}
