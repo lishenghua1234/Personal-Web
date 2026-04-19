@@ -14,3 +14,6 @@ build/
 
 # 归档旧文件（不再需要版本控制）
 _legacy/
+
+**/*/node_modules/
+node_modules/
