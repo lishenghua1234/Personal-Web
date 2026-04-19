@@ -3,3 +3,8 @@ node_modules/
 .*
 _*
 package*.json
+
+.git/
+.git
+.github/
+.gitignore
